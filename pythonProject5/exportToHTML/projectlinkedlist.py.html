@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>projectlinkedlist.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #008080; font-weight: bold;}
+.s3 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+projectlinkedlist.py</font>
+</center></td></tr></table>
+<pre><span class="s0">class </span><span class="s1">node:</span>
+    <span class="s0">def </span><span class="s1">__init__(self, initdata):</span>
+        <span class="s1">self.data = initdata</span>
+        <span class="s1">self.next = </span><span class="s0">None</span>
+
+    <span class="s0">def </span><span class="s1">getdata(self):</span>
+        <span class="s0">return </span><span class="s1">self.data</span>
+
+    <span class="s0">def </span><span class="s1">getnext(self):</span>
+        <span class="s0">return </span><span class="s1">self.next</span>
+
+    <span class="s0">def </span><span class="s1">setdata(self, newdata):</span>
+        <span class="s1">self.data = newdata</span>
+
+    <span class="s0">def </span><span class="s1">setnext(self, newnext):</span>
+        <span class="s1">self.next = newnext</span>
+
+
+<span class="s0">class </span><span class="s1">orderedlist:</span>
+    <span class="s0">def </span><span class="s1">__init__(self):</span>
+        <span class="s1">self.head = </span><span class="s0">None</span>
+
+    <span class="s0">def </span><span class="s1">show(self):</span>
+        <span class="s1">current = self.head</span>
+        <span class="s1">print(</span><span class="s2">&quot;Head -&gt; &quot;</span><span class="s1">, end=</span><span class="s2">&quot;&quot;</span><span class="s1">)</span>
+        <span class="s0">while </span><span class="s1">current != </span><span class="s0">None</span><span class="s1">:</span>
+            <span class="s1">print(current.getdata(), end=</span><span class="s2">&quot;-&gt; &quot;</span><span class="s1">)</span>
+            <span class="s1">current = current.getnext()</span>
+        <span class="s1">print(</span><span class="s2">&quot;None&quot;</span><span class="s1">)</span>
+
+    <span class="s0">def </span><span class="s1">isempty(self):</span>
+        <span class="s0">return </span><span class="s1">self.head == </span><span class="s0">None</span>
+
+    <span class="s0">def </span><span class="s1">add(self, item):</span>
+        <span class="s1">temp = node(item)</span>
+        <span class="s1">temp.setnext(self.head)</span>
+        <span class="s1">self.head = temp</span>
+
+    <span class="s0">def </span><span class="s1">size(self):</span>
+        <span class="s1">current = self.head</span>
+        <span class="s1">count = </span><span class="s3">0</span>
+        <span class="s0">while </span><span class="s1">current != </span><span class="s0">None</span><span class="s1">:</span>
+            <span class="s1">count += </span><span class="s3">1</span>
+            <span class="s1">current = current.getnext()</span>
+        <span class="s0">return </span><span class="s1">count</span>
+
+    <span class="s0">def </span><span class="s1">search(self):</span>
+        <span class="s1">current = self.head</span>
+        <span class="s1">s = int(input(</span><span class="s2">&quot;masukkan data yang akan dicari : &quot;</span><span class="s1">))</span>
+        <span class="s1">found = </span><span class="s0">False</span>
+        <span class="s0">while </span><span class="s1">current != </span><span class="s0">None and not </span><span class="s1">found:</span>
+            <span class="s0">if </span><span class="s1">current.getdata() == s:</span>
+                <span class="s1">found = </span><span class="s0">True</span>
+            <span class="s0">else</span><span class="s1">:</span>
+                <span class="s1">current = current.getnext()</span>
+        <span class="s0">if </span><span class="s1">found == </span><span class="s0">True</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s2">&quot;Data ditemukan&quot;</span><span class="s1">)</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s2">&quot;Data tidak ditemukan&quot;</span><span class="s1">)</span>
+
+    <span class="s0">def </span><span class="s1">remove(self):</span>
+        <span class="s1">current = self.head</span>
+        <span class="s1">s = int(input(</span><span class="s2">&quot;masukkan data yang akan dihapus : &quot;</span><span class="s1">))</span>
+        <span class="s1">previous = </span><span class="s0">None</span>
+        <span class="s1">found = </span><span class="s0">False</span>
+        <span class="s0">while not </span><span class="s1">found </span><span class="s0">and </span><span class="s1">current != </span><span class="s0">None</span><span class="s1">:</span>
+            <span class="s0">if </span><span class="s1">current.getdata() == s:</span>
+                <span class="s1">found = </span><span class="s0">True</span>
+            <span class="s0">else</span><span class="s1">:</span>
+                <span class="s1">previous = current</span>
+                <span class="s1">current = current.getnext()</span>
+        <span class="s0">if </span><span class="s1">found == </span><span class="s0">True</span><span class="s1">:</span>
+            <span class="s0">if </span><span class="s1">previous == </span><span class="s0">None</span><span class="s1">:</span>
+                <span class="s1">self.head = current.getnext()</span>
+            <span class="s0">else</span><span class="s1">:</span>
+                <span class="s1">previous.setnext(current.getnext())</span>
+            <span class="s1">print(</span><span class="s2">&quot;Data sudah dihapus&quot;</span><span class="s1">)</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s1">print(</span><span class="s2">&quot;Data yang akan dihapus tidak ditemukan&quot;</span><span class="s1">)</span>
+
+    <span class="s0">def </span><span class="s1">ganjil(self, item):</span>
+        <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range(len(item)):</span>
+            <span class="s0">if </span><span class="s1">item[i] % </span><span class="s3">2 </span><span class="s1">== </span><span class="s3">1</span><span class="s1">:</span>
+                <span class="s1">ganjil.append(item[i])</span>
+        <span class="s1">ol.sort(ganjil)</span>
+        <span class="s1">print(ganjil)</span>
+
+    <span class="s0">def </span><span class="s1">genap(self, item):</span>
+        <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">range(len(item)):</span>
+            <span class="s0">if </span><span class="s1">item[i] % </span><span class="s3">2 </span><span class="s1">== </span><span class="s3">0</span><span class="s1">:</span>
+                <span class="s1">genap.append(item[i])</span>
+        <span class="s1">ol.sort(genap)</span>
+        <span class="s1">print(genap)</span>
+
+    <span class="s0">def </span><span class="s1">sort(self, item):</span>
+        <span class="s0">for </span><span class="s1">x </span><span class="s0">in </span><span class="s1">range(len(item) - </span><span class="s3">1</span><span class="s1">, </span><span class="s3">0</span><span class="s1">, -</span><span class="s3">1</span><span class="s1">):</span>
+            <span class="s0">for </span><span class="s1">y </span><span class="s0">in </span><span class="s1">range(x):</span>
+                <span class="s0">if </span><span class="s1">item[y] &gt; item[y + </span><span class="s3">1</span><span class="s1">]:</span>
+                    <span class="s1">item[y], item[y + </span><span class="s3">1</span><span class="s1">] = item[y + </span><span class="s3">1</span><span class="s1">], item[y]</span>
+
+    <span class="s0">def </span><span class="s1">tambah(self, item):</span>
+        <span class="s1">pil = </span><span class="s2">&quot;y&quot;</span>
+        <span class="s0">while </span><span class="s1">pil == </span><span class="s2">&quot;y&quot;</span><span class="s1">:</span>
+            <span class="s1">tam = int(input(</span><span class="s2">&quot;masukkan data : &quot;</span><span class="s1">))</span>
+            <span class="s1">lis.append(tam)</span>
+            <span class="s1">pil = str(input(</span><span class="s2">&quot;apakah anda mau memasukkan data lagi ? (y/n)&quot;</span><span class="s1">))</span>
+        <span class="s1">ol.ganjil(lis)</span>
+        <span class="s1">ol.genap(lis)</span>
+        <span class="s1">genap.reverse()</span>
+        <span class="s1">merge = ganjil + genap</span>
+        <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">merge:</span>
+            <span class="s1">ol.add(i)</span>
+
+
+<span class="s1">ol = orderedlist()</span>
+<span class="s1">lis = [</span><span class="s3">170411100001</span><span class="s1">, </span><span class="s3">170411100002</span><span class="s1">, </span><span class="s3">170411100003</span><span class="s1">, </span><span class="s3">170411100004</span><span class="s1">, </span><span class="s3">170411100005</span><span class="s1">, </span><span class="s3">170411100006</span><span class="s1">]</span>
+<span class="s1">genap = []</span>
+<span class="s1">ganjil = []</span>
+<span class="s1">merge = ganjil + genap</span>
+<span class="s1">ol.tambah(ol)</span>
+<span class="s1">ol.show()</span>
+<span class="s1">print(</span><span class="s2">&quot;panjang datanya adalah&quot;</span><span class="s1">, orderedlist.size(ol))</span>
+<span class="s1">orderedlist.search(ol)</span>
+<span class="s1">orderedlist.remove(ol)</span>
+<span class="s1">ol.show()</span></pre>
+</body>
+</html>
